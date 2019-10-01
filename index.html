@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Score Board</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="score-board">
+            <h3>Score Board</h3>
+            <table id="score-board">
+                <thead>
+                    <th>Ranking</th>
+                    <th>Points</th>
+                    <th>Player</th>
+                    <th>Position</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="players">
+            <h3>Players</h3>
+            <ul id="players"></ul>
+        </div>
+
+        <div class="add-player">
+            <h3>Add Player</h3>
+            <form id="add-player">
+                <label for="name">Name :</label>
+                <input type="text" name="name" id="name" required>
+                <label for="lastName">Last Name :</label>
+                <input type="text" name="lastName" id="lastName" required>
+                <label for="position">Position :</label>
+                <select name="position" id="position" required>
+                    <option value="PG">Point Guard</option>
+                    <option value="SG">Shooting Guard</option>
+                    <option value="SF">Small Forward</option>
+                    <option value="PF">Power Forward</option>
+                    <option value="C">Center</option>
+                </select>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
