@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { handleAddPlayer, handleEditPlayer } from '../actions/players';
 
 class AddPlayer extends Component {
     state = {
@@ -11,31 +13,34 @@ class AddPlayer extends Component {
         }
     }
 
-    componentDidMount() {
-        const id = this.props.match ? this.props.match.params.id : null
-        if (id) {
-            this.setState({
-                editMode: true,
-                player: this.props.players.find(player => player.id === +id),
-                currentId: id
-            })
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.editMode) {
+            if (nextProps.currentId !== prevState.player.id) {
+                prevState = {
+                    ...prevState,
+                    player: nextProps.players.find(({ id }) => +nextProps.match.params.id === id)
+                }
+            }
         }
+
+        return prevState;
     }
 
     onChange = (e) => this.setState({ player: { ...this.state.player, [e.target.id]: e.target.value } })
     onSubmit = (e) => {
         e.preventDefault()
-        const { player, editMode } = this.state
+        const { player } = this.state
+        const { editMode } = this.props
 
-        if (editMode) this.props.onEditPlayer(player)
-        else this.props.onAddPlayer(player)
+        if (editMode) this.props.dispatch(handleEditPlayer(player))
+        else this.props.dispatch(handleAddPlayer(player))
 
         this.props.history.push('/players')
     }
 
     render() {
-        const { editMode, player } = this.state
-        const { name, lastName, position } = player
+        const { editMode } = this.props
+        const { name, lastName, position } = this.state.player
         return (
             <div className="add-player">
                 <h3>{editMode ? "Edit" : "Add"} Player</h3>
@@ -59,4 +64,16 @@ class AddPlayer extends Component {
     }
 }
 
-export default AddPlayer;
+function mapStateToProps({ players }, ownProps) {
+    const id = ownProps.match ? ownProps.match.params.id : null
+    const editMode = id && players.length > 0
+
+    return {
+        editMode,
+        players,
+        currentId: +id,
+        ...ownProps
+    }
+}
+
+export default connect(mapStateToProps)(AddPlayer);

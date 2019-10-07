@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class ScoreBoard extends Component {
     state = {}
     render() {
-        const scoreboard = [...this.props.scoreboard]
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 3)
+        const scoreboard = this.props.scoreboard
 
         return (
             <div className="score-board">
@@ -26,7 +25,7 @@ class ScoreBoard extends Component {
                                 .map((playerScore, index) => {
                                     if (!playerScore) return null
                                     const { id, score } = playerScore
-                                    const player = this.props.players[id]
+                                    const player = this.props.players.find((player) => player.id === id)
                                     if (!player) return null
                                     const { name, lastName, position } = player
                                     return (
@@ -50,4 +49,14 @@ class ScoreBoard extends Component {
     }
 }
 
-export default ScoreBoard;
+function mapStateToProps({ scoreboard, players }) {
+    scoreboard = scoreboard
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+    return {
+        scoreboard,
+        players
+    }
+}
+
+export default connect(mapStateToProps)(ScoreBoard);
