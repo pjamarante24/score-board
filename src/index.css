@@ -1,0 +1,191 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: #212529;
+}
+
+.container {
+  width: 50%;
+  display: block;
+  margin: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 80%;
+  }
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td,
+table th {
+  border: 1px solid #555;
+  padding: 4px;
+  text-align: center;
+}
+
+table th {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: #555;
+  color: white;
+}
+input[type="text"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#add-player button {
+  width: 100%;
+  background-color: #555;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.players button:first-child,
+.search-players button:first-child {
+  margin-left: 10px;
+}
+
+.players button,
+.search-players button {
+  border: none;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.players button:hover,
+.search-players button:hover {
+  background-color: #ccc;
+}
+
+.add-player,
+.players,
+.search-players,
+.score-board {
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+.nav li:first-child {
+  padding-left: 0;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.add-score {
+  display: flex;
+  justify-content: space-between;
+}
+
+.group-btn {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 10px 0;
+}
+
+.group-btn button {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.group-btn button:first-child {
+  border-right: none;
+}
+
+.add-score input {
+  flex: 1;
+}
+
+.players li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.players .group-btn {
+  padding: 0;
+}
+
+.player-score li,
+.players li {
+  border-bottom: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.player-score li:hover,
+.players li:hover {
+  background-color: #ddd;
+}
+
+.player-score li:last-child,
+.players li:last-child {
+  border-bottom: none;
+}
+
+.player-score li.active,
+.players li.active {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+*:focus {
+  outline: none;
+}
