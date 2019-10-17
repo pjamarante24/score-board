@@ -16,7 +16,7 @@ function ScoreBoard(props) {
                         <th>Position</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody data-testid="score-board-body">
 
                     {scoreboard.length > 0
                         ? scoreboard

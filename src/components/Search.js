@@ -4,7 +4,7 @@ import { addScore } from '../actions/scoreboard';
 
 function Search(props) {
     const getFullname = ({ name, lastName }) => `${name} ${lastName}`
-    
+
     const [filterValue, setFilterValue] = useState('')
     const [selectedId, setSelectedId] = useState(null)
 
@@ -25,7 +25,7 @@ function Search(props) {
         <div className="search-players">
             <h3>Add Score</h3>
             <div className="add-score">
-                <input type="text" placeholder="e.g Michael Jordan" onChange={filterPlayers} value={filterValue} />
+                <input type="text" placeholder="e.g Michael Jordan" data-testid="search-input" onChange={filterPlayers} value={filterValue} />
                 {
                     selectedId !== null ? (
                         <div className="group-btn">
@@ -38,7 +38,7 @@ function Search(props) {
 
             </div>
 
-            <ul className="player-score">
+            <ul className="player-score" data-testid="search-results">
                 {filterValue !== "" ? props.players.map(({ id, name, lastName, position }) => {
                     const fullname = `${name} ${lastName}`
                     const regex = new RegExp(filterValue, 'gi')
@@ -53,12 +53,12 @@ function Search(props) {
                                 [
                                     ...previous,
                                     current,
-                                    (<b>{match[index]}</b>)
+                                    (<b key={index}>{match[index]}</b>)
                                 ]
 
                                 : [
                                     current,
-                                    (<b>{match[index]}</b>)
+                                    (<b key={index}>{match[index]}</b>)
                                 ]
                         }, null)
 

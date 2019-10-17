@@ -17,11 +17,11 @@ function Players(props) {
     const handleDeletePlayer = (id) => {
         props.dispatch(removePlayer(id))
     }
-    
+
     return (
         <div className="players">
             <h3>Players</h3>
-            <ul id="players">
+            <ul id="players" data-testid="players-list">
                 {props.players.map(({ id, name, lastName, position }) => (
                     <li
                         key={id}
@@ -31,10 +31,10 @@ function Players(props) {
                         {name} {lastName}, {position}
                         {selectedId === id ? (
                             <div className="group-btn">
-                                <button onClick={() => handleEditPlayer(id)}>
+                                <button onClick={() => handleEditPlayer(id)} data-testid="edit-button">
                                     <FiEdit />
                                 </button>
-                                <button onClick={() => handleDeletePlayer(id)}>
+                                <button onClick={() => handleDeletePlayer(id)} data-testid="remove-button">
                                     <FiTrash2 />
                                 </button>
                             </div>)
