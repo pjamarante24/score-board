@@ -26,6 +26,25 @@ let players = [
 
 ]
 
-export function getPlayers() {
+let scoreboard = [
+    {
+        id: 0,
+        score: 12
+    },
+    {
+        id: 1,
+        score: 4
+    },
+    {
+        id: 2,
+        score: 8
+    }
+]
+
+export function _getPlayers() {
     return players;
+}
+
+export function _getScoreboard() {
+    return scoreboard;
 }

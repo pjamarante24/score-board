@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { connect } from 'react-redux';
+import { removePlayer } from '../actions/players';
 
 class Players extends Component {
     state = {
@@ -11,10 +13,13 @@ class Players extends Component {
     }
 
     handleSelectId = (id) => {
-
         this.setState({
             selectedId: this.state.selectedId === id ? null : id,
         })
+    }
+
+    handleDeletePlayer = (id) => {
+        this.props.dispatch(removePlayer(id))
     }
 
     render() {
@@ -35,7 +40,7 @@ class Players extends Component {
                                     <button onClick={() => this.handleEditPlayer(id)}>
                                         <FiEdit />
                                     </button>
-                                    <button onClick={() => this.props.onDeletePlayer(id)}>
+                                    <button onClick={() => this.handleDeletePlayer(id)}>
                                         <FiTrash2 />
                                     </button>
                                 </div>)
@@ -48,4 +53,10 @@ class Players extends Component {
     }
 }
 
-export default Players;
+function mapStateToProps({ players }) {
+    return {
+        players
+    }
+}
+
+export default connect(mapStateToProps)(Players);

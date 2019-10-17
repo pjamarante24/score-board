@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addScore } from '../actions/scoreboard';
 
 class Search extends Component {
     state = {
@@ -37,8 +39,8 @@ class Search extends Component {
                     {
                         selectedId !== null ? (
                             <div className="group-btn">
-                                <button onClick={() => this.props.onAddScore(selectedId, 2)}>+2pts</button>
-                                <button onClick={() => this.props.onAddScore(selectedId, 3)}>+3pts</button>
+                                <button onClick={() => this.props.dispatch(addScore(selectedId, 2))}>+2pts</button>
+                                <button onClick={() => this.props.dispatch(addScore(selectedId, 3))}>+3pts</button>
                             </div>
                         )
                             : null
@@ -88,4 +90,10 @@ class Search extends Component {
     }
 }
 
-export default Search;
+function mapStateToProps({ players }) {
+    return {
+        players
+    }
+}
+
+export default connect(mapStateToProps)(Search);
