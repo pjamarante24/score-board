@@ -1,56 +1,49 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { connect } from 'react-redux';
 import { removePlayer } from '../actions/players';
 
-class Players extends Component {
-    state = {
-        selectedId: null
+function Players(props) {
+    const [selectedId, setSelectedId] = useState(null)
+
+    const handleEditPlayer = (id) => {
+        props.history.push(`/edit-player/${id}`)
     }
 
-    handleEditPlayer = (id) => {
-        this.props.history.push(`/edit-player/${id}`)
+    const handleSelectId = (id) => {
+        setSelectedId(selectedId === id ? null : id)
     }
 
-    handleSelectId = (id) => {
-        this.setState({
-            selectedId: this.state.selectedId === id ? null : id,
-        })
+    const handleDeletePlayer = (id) => {
+        props.dispatch(removePlayer(id))
     }
 
-    handleDeletePlayer = (id) => {
-        this.props.dispatch(removePlayer(id))
-    }
-
-    render() {
-        const { selectedId } = this.state
-        return (
-            <div className="players">
-                <h3>Players</h3>
-                <ul id="players">
-                    {this.props.players.map(({ id, name, lastName, position }) => (
-                        <li
-                            key={id}
-                            className={selectedId === id ? "active" : null}
-                            onClick={() => this.handleSelectId(id)}
-                        >
-                            {name} {lastName}, {position}
-                            {selectedId === id ? (
-                                <div className="group-btn">
-                                    <button onClick={() => this.handleEditPlayer(id)}>
-                                        <FiEdit />
-                                    </button>
-                                    <button onClick={() => this.handleDeletePlayer(id)}>
-                                        <FiTrash2 />
-                                    </button>
-                                </div>)
-                                : null}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        );
-    }
+    return (
+        <div className="players">
+            <h3>Players</h3>
+            <ul id="players" data-testid="players-list">
+                {props.players.map(({ id, name, lastName, position }) => (
+                    <li
+                        key={id}
+                        className={selectedId === id ? "active" : null}
+                        onClick={() => handleSelectId(id)}
+                    >
+                        {name} {lastName}, {position}
+                        {selectedId === id ? (
+                            <div className="group-btn">
+                                <button onClick={() => handleEditPlayer(id)} data-testid="edit-button">
+                                    <FiEdit />
+                                </button>
+                                <button onClick={() => handleDeletePlayer(id)} data-testid="remove-button">
+                                    <FiTrash2 />
+                                </button>
+                            </div>)
+                            : null}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )
 }
 
 function mapStateToProps({ players }) {
