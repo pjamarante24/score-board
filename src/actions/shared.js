@@ -1,10 +1,13 @@
-import { _getPlayers, _getScoreboard } from "../utils/_DATA";
 import { receivePlayers } from "./players";
 import { receiveScoreboard } from "./scoreboard";
+import { getInitialData } from "../utils/api";
 
 export function handleInitialData() {
     return (dispatch) => {
-        dispatch(receivePlayers(_getPlayers()))
-        dispatch(receiveScoreboard(_getScoreboard()))
+        return getInitialData()
+            .then(({ players, scoreboard }) => {
+                dispatch(receivePlayers(players))
+                dispatch(receiveScoreboard(scoreboard))
+            })
     }
 }

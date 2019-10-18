@@ -9,7 +9,7 @@ export default (state = [], action) => {
             ]
         case ADD_PLAYER:
             return state.concat({
-                id: state.length,
+                id: action.player.id,
                 name: action.player.name,
                 lastName: action.player.lastName,
                 position: action.player.position,

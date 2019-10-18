@@ -1,3 +1,5 @@
+import api from '../utils/api'
+
 export const RECEIVE_PLAYERS = 'RECEIVE_PLAYERS';
 export const ADD_PLAYER = 'ADD_PLAYER';
 export const EDIT_PLAYER = 'EDIT_PLAYER';
@@ -21,7 +23,8 @@ export const handleAddPlayer = (player) => {
             return
         }
 
-        dispatch(addPlayer(player))
+        return api.addPlayer(player)
+            .then((p) => dispatch(addPlayer(p)))
     }
 }
 
@@ -38,13 +41,17 @@ export const handleEditPlayer = (player) => {
             return
         }
 
-        dispatch(editPlayer(player))
+        return api.editPlayer(player)
+            .then((player) => dispatch(editPlayer(player)))
     }
 }
 
 export function removePlayer(id) {
-    return {
-        type: REMOVE_PLAYER,
-        id
+    return (dispatch) => {
+        return api.removePlayer(id)
+            .then(() => dispatch({
+                type: REMOVE_PLAYER,
+                id
+            }))
     }
 }

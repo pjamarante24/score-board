@@ -1,3 +1,5 @@
+import api from "../utils/api";
+
 export const RECEIVE_SCOREBOARD = 'RECEIVE_SCOREBOARD';
 export const ADD_SCORE = 'ADD_SCORE';
 
@@ -6,8 +8,13 @@ export const receiveScoreboard = scoreboard => ({
     scoreboard
 });
 
-export const addScore = (id, score) => ({
-    type: ADD_SCORE,
-    id,
-    score
-});
+export const addScore = (id, score) => {
+    return (dispatch) => {
+        return api.addScore(id, score)
+            .then(() => dispatch({
+                type: ADD_SCORE,
+                id,
+                score
+            }))
+    }
+};
