@@ -1,36 +1,48 @@
 {
-  "name": "scoreboard",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
-    "react-icons": "^3.7.0",
-    "react-redux": "^7.1.1",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.1.2",
-    "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "scoreboard",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@babel/runtime": "^7.6.3",
+		"react": "^16.10.1",
+		"react-dom": "^16.10.1",
+		"react-icons": "^3.7.0",
+		"react-redux": "^7.1.1",
+		"react-router-dom": "^5.1.2",
+		"react-scripts": "3.1.2",
+		"redux": "^4.0.4",
+		"redux-thunk": "^2.3.0"
+	},
+	"scripts": {
+		"dev": "npm run dev:build && babel-node server/index.js",
+		"dev:build": "parcel build --public-url ./dist/ public/index.html",
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"@babel/core": "^7.6.4",
+		"@babel/node": "^7.6.3",
+		"@babel/plugin-proposal-class-properties": "^7.5.5",
+		"@babel/plugin-transform-runtime": "^7.6.2",
+		"@babel/preset-env": "^7.6.3",
+		"@babel/preset-react": "^7.6.3",
+		"parcel-bundler": "^1.12.4"
+	}
 }

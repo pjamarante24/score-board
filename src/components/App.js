@@ -4,7 +4,7 @@ import Players from './Players';
 import AddPlayer from './AddPlayer';
 import Search from "./Search";
 
-import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import { Switch, Route, NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 
@@ -15,7 +15,6 @@ function App(props) {
 
   return (
     <div className="container" >
-      <Router>
         <div>
           <nav className='nav'>
             <ul>
@@ -41,7 +40,6 @@ function App(props) {
             <Route path="/edit-player/:id" component={AddPlayer} />
           </Switch>
         </div>
-      </Router>
     </div>
   );
 }
